@@ -1,0 +1,38 @@
+body {
+    background-color:#fafafa;
+    margin:0em;
+}
+hgroup {
+    width:100%;
+}
+hgroup.title {
+    position:fixed;
+}
+h1 {
+    width:90%;
+    text-align:center;
+}
+h2, h3 {
+    display:inline;
+    margin:.25em;
+}
+
+table {
+    width:80%;
+    text-align:center;
+    border:3px ridge #000;
+}
+td {
+    border:2px ridge #222;
+}
+
+.right {
+    position:;
+    right:0px;
+}
+
+.summary {
+    margin:.5em;
+    background-color:#A0E;
+    float:left;
+}

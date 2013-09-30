@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="titlebar">Event list:</h1>
+    <table>
+        <tr>
+            <th>Event</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Sport</th>
+        </tr>
+        {% for event in events %}
+            <tr>
+                <td><a href="{{ event.get_absolute_url }}">{{ event.name }}</a></td>
+                <td>{{ event.date }}</td>
+                <td>{{ event.location }}</td>
+                <td>{{ event.sub_sport }}</td>
+            </tr>
+        {% endfor %}
+    </table>    
+{% endblock %}

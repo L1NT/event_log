@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <hgroup class="title">
+        <h2>{{ event.name }}</h2>
+        <h3>({{ event.date}}; {{ event.location }})</h3>
+        <h3 class="right">{% if event.bib_number %}bib number: #{{ event.bib_number }}{% endif %}</h3>
+    </hgroup>
+    <div class="summary">{{ event.recap }}</div>
+    <hgroup>
+        <h2>Placings:</h2>
+    </hgroup>
+    {% if event.finish_overall %}
+        Overall Finish: {{ event.finish_overall }} (out of {{ event.finishers }} finishers)
+    {% endif %}
+    {% if event.finish_gender %}
+        Gender Finish: {{ event.finish_gender }} (out of {{ event.finishers_gender }} Men)
+    {% endif %}
+    {% if event.finish_age_group %}
+        Overall Finish: {{ event.finish_age_group }} (out of {{ event.finishers_age_group }} {{event.age_group}})
+    {% endif %}
+    {% if event.finish_handicapped %}
+        Overall Finish: {{ event.finish_handicapped }} (out of {{ event.finishers }} finishers)
+    {% endif %}
+    
+{% endblock %}
