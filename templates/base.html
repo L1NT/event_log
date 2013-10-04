@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Event Log</title>
-        <link rel="stylesheet" type="text/css" href="{{ css }}" />
-    </head>
-    <body>
-        <h1>Luke's Event Log</h1>
-        {% block content %}{% endblock %}
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Event Log</title>
+    <link rel="stylesheet" type="text/css" href="{{ css }}" />
+    <link rel="stylesheet" type="text/css" href="{{ js_libs }}jquery.dataTables.css" />
+    <link rel="stylesheet" type="text/css" href="{{ js_libs }}jquery.fancybox.css" />
+    <script src="{{ js_libs }}jquery-1.10.2.min.js"></script>
+    <script src="{{ js_libs }}jquery.mousewheel-3.0.6.pack.js"></script>
+    <script src="{{ js_libs }}jquery.dataTables.min.js"></script>
+    <script src="{{ js_libs }}jquery.fancybox.pack.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('table.display').dataTable({
+          bSort: true,
+          bStateSave: true,
+        });
+        
+        $('a.fancybox').fancybox({
+          //
+        });
+      });
+    </script>
+
+  </head>
+  <body>
+    <h1><a href="/">Luke's Event Log</a></h1>
+    <nav>
+      <ul>
+        <li><a href="/events/">Home</a></li>
+        <li><a href="/events/recaps/">Event Recap</a></li>
+        <li><a href="/events/search/">Search</a></li>
+        <li><a href="http://www.lukejeter.com">Jeter Portal</a></li>
+        <li><a href="http://rmrr.org">RMRR</a></li>
+      </ul>
+    </nav>
+    {% block content %}{% endblock %}
+  </body>
 </html>

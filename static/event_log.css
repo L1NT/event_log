@@ -1,38 +1,107 @@
 body {
-    background-color:#fafafa;
-    margin:0em;
+  background-color:#fafafa;
+  margin:3em;
+  min-width:800px;
 }
 hgroup {
-    width:100%;
+  width:100%;
+  border:3px solid black;
 }
 hgroup.title {
-    position:fixed;
+    position:relative;
 }
 h1 {
-    width:90%;
-    text-align:center;
+  text-align:center;
 }
 h2, h3 {
-    display:inline;
-    margin:.25em;
+  margin:.25em;
 }
+
+p {
+  margin:1em;
+}
+
 
 table {
-    width:80%;
-    text-align:center;
-    border:3px ridge #000;
+  /*width:80%;*/
+  /*text-align:center;*/
+  border:3px ridge #000;
 }
+/*
 td {
-    border:2px ridge #222;
+  border:2px ridge #222;
 }
+*/
 
-.right {
-    position:;
-    right:0px;
+.topright {
+  position:absolute;
+  top:0px;
+  right:0px;
 }
 
 .summary {
-    margin:.5em;
-    background-color:#A0E;
-    float:left;
+  margin:.5em;
+  background-color:#A0E;
+  border:#000000 solid thick; 
 }
+
+/* whittle this down!! don't need to collapse the rows because of narrow width! */
+nav {
+    width: 704px;
+    margin: 0 auto;
+    padding: 0;
+    
+    /* I like the idea of a border around my nav menu, but I don't like how this is displaying */
+    /*border: 2px solid #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;*/
+}
+    nav ul {
+        list-style: none;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav li a {
+        /*display: block;*/
+      float: left;
+      width: 120px;
+      padding: 10px;
+        height: 55px;
+ 
+      border-right: 1px solid #fff;
+       
+      background: #444;
+        background:-webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0.39, rgb(85, 85, 85)),
+            color-stop(0.7, rgb(105, 105, 105))
+        );
+        background:-moz-linear-gradient(
+            center bottom,
+            rgb(85,85,85) 39%,
+            rgb(105,105,105) 70%
+        );
+ 
+      color: #fff;  
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+        
+        /*transitions*/
+        -webkit-transition: background 0.5s ease;
+        -moz-transition: background 0.5s ease;
+        -o-transition: background 0.5s ease;
+        -ms-transition: background 0.5s ease;
+        transition: background 0.5s ease;
+    }
+        nav li a:hover {
+            background: #222;
+        }
+        nav li:last-child a {
+            border-right-style: none;
+        }

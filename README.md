@@ -1,2 +1,2 @@
-event-log
+event_log
 =========

@@ -1,26 +1,75 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <hgroup class="title">
-        <h2>{{ event.name }}</h2>
-        <h3>({{ event.date}}; {{ event.location }})</h3>
-        <h3 class="right">{% if event.bib_number %}bib number: #{{ event.bib_number }}{% endif %}</h3>
-    </hgroup>
-    <div class="summary">{{ event.recap }}</div>
-    <hgroup>
-        <h2>Placings:</h2>
-    </hgroup>
-    {% if event.finish_overall %}
-        Overall Finish: {{ event.finish_overall }} (out of {{ event.finishers }} finishers)
-    {% endif %}
-    {% if event.finish_gender %}
-        Gender Finish: {{ event.finish_gender }} (out of {{ event.finishers_gender }} Men)
-    {% endif %}
-    {% if event.finish_age_group %}
-        Overall Finish: {{ event.finish_age_group }} (out of {{ event.finishers_age_group }} {{event.age_group}})
-    {% endif %}
-    {% if event.finish_handicapped %}
-        Overall Finish: {{ event.finish_handicapped }} (out of {{ event.finishers }} finishers)
-    {% endif %}
-    
+  <hgroup class="title">
+    <h2>{{ event.name }} ({{ event.sub_sport }})</h2>
+    <h3>{{ event.location }}, {{ event.date}}</h3>
+    <div class="topright">
+      <h3>{% if event.bib_number %}bib number: #{{ event.bib_number }}{% endif %}</h3>
+      <h3>{{ place }}</h3>
+    </div>
+  </hgroup>
+  
+  {% if event.swim_distance or event.bike_distance or event.run_distance %}
+    <!-- <h2>Distances:</h2> -->
+    <p>
+      {% if event.swim_distance %}
+        &nbsp;&nbsp;Swim Distance: {{ event.swim_distance }}
+      {% endif %}
+      {% if event.bike_distance %}
+        &nbsp;&nbsp;Bike Distance: {{ event.bike_distance }}
+      {% endif %}
+      {% if event.run_distance %}
+        &nbsp;&nbsp;Run Distance: {{ event.run_distance }}
+      {% endif %}
+    </p>
+  {% endif %}
+  {% if event.swim_time or event.bike_time or event.run_time %}
+    <p>
+      {% if event.swim_time %}
+        &nbsp;&nbsp;Swim Time: {{ event.swim_time }}
+      {% endif %}
+      {% if event.bike_time %}
+        &nbsp;&nbsp;Bike Time: {{ event.bike_time }} ({{ bike_speed }}mph)
+      {% endif %}
+      {% if event.run_time %}
+        &nbsp;&nbsp;Run Time: {{ event.run_time }} ({{ run_pace }}/mile)
+      {% endif %}
+    </p>
+    <hr />
+  {% endif %}
+
+  <div class="summary"><p>{{ event.recap }}</p></div>
+  
+  {% if pictures %}
+    <h2>Pictures:</h2>
+    <div class="pictures">this is my placeholder for associated images
+      {% for pic in pictures %}
+        <img src="{{ pic.get_absolute_url }}" />
+      {% endfor %}
+    </div>
+    <hr />
+  {% endif %}
+  
+  {% if event.finish_overall or event.finish_gender or event.finish_age_group or event.finish_handicapped %}
+    <h2>Results:</h2>
+    <p>
+      {% if event.results_url %}
+        <a href="{{ event.results_url }}">online results</a><br />
+      {% endif %}
+      {% if event.finish_overall %}
+        Overall Finish: {{ event.finish_overall }} (out of {{ event.finishers }})<br />
+      {% endif %}
+      {% if event.finish_gender %}
+        Gender Finish: {{ event.finish_gender }} (out of {{ event.finishers_gender }})<br />
+      {% endif %}
+      {% if event.finish_age_group %}
+        Age Group Finish ({{ event.age_group }}): {{ event.finish_age_group }} (out of {{ event.finishers_age_group }})<br />
+      {% endif %}
+      {% if event.finish_handicapped %}
+        Handicapped Finish: {{ event.finish_handicapped }} (out of {{ event.finishers }})<br />
+      {% endif %}
+    </p>
+    <hr />
+  {% endif %}
 {% endblock %}

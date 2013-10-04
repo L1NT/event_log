@@ -28,17 +28,25 @@ class SubSport(models.Model):
         return str(self.sport) + ': ' + self.sub_sport
 
 class Event(models.Model):
-    name = models.CharField(max_length=25)
+    name = models.CharField(max_length=35)
     date = models.DateField()
     location = models.CharField(max_length=50)
     sport = models.ForeignKey(Sport)
     sub_sport = models.ForeignKey(SubSport,blank=True,null=True)
+    recap = models.TextField()
+    notes = models.TextField(blank=True,null=True) #hidden from general ui
+    bib_number = models.IntegerField(blank=True,null=True)
+    category = models.CharField(max_length=10,blank=True,null=True)
     swim_distance = models.FloatField(blank=True,null=True)
     bike_distance = models.FloatField(blank=True,null=True)
     run_distance = models.FloatField(blank=True,null=True)
-    recap = models.CharField(max_length=250)
-    bib_number = models.IntegerField(blank=True,null=True)
-    results_url = models.URLField(blank=True,null=True)
+    swim_time = models.TimeField(blank=True,null=True)
+    bike_time = models.TimeField(blank=True,null=True)
+    run_time = models.TimeField(blank=True,null=True)
+    t1_time = models.TimeField(blank=True,null=True)
+    t2_time = models.TimeField(blank=True,null=True)
+    total_time = models.TimeField(blank=True,null=True) #used for total even time (brevets & triathlons)
+    dnf = models.BooleanField()
     finish_overall = models.IntegerField(blank=True,null=True)
     finishers_overall = models.IntegerField(blank=True,null=True)
     finish_gender = models.IntegerField(blank=True,null=True)
@@ -46,7 +54,9 @@ class Event(models.Model):
     finish_age_group = models.IntegerField(blank=True,null=True)
     finishers_age_group = models.IntegerField(blank=True,null=True)
     age_group = models.CharField(max_length=10,blank=True,null=True)
+    #maybe just use "handicapped" as the age group description??
     finish_handicapped = models.IntegerField(blank=True,null=True)
+    results_url = models.URLField(blank=True,null=True)
     
     class Meta:
         ordering = ['date']
