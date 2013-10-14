@@ -10,7 +10,7 @@ class SubSportAdmin(admin.ModelAdmin):
     pass
    
 class EventAdmin(admin.ModelAdmin):
-    #group finishes; subgroup placing & finishers
+    #TODO: group finishes; subgroup placing & finishers
     #filter SubSport by Sport
     #??? filter = [SubSport.objects.filter(sport=self.sport)]
     pass

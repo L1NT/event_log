@@ -36,18 +36,21 @@ class Recaps(View):
                 place += 'th place'
                
         bike_speed = ''
-        if target_event.bike_time:
+        if target_event.bike_distance and target_event.bike_time:
             bike_speed = target_event.bike_distance/(target_event.bike_time.hour + target_event.bike_time.minute/60 + target_event.bike_time.second/360)
         run_pace = ''
-        if target_event.run_time:
-            pass
-            #run_pace = (target_event.run_time)
+        if target_event.run_distance and target_event.run_time:
+            run_pace = target_event.run_time.hour*60 + target_event.run_time.minute + target_event.run_time.second/60
+            run_pace /= target_event.run_distance
+            minutes = int(run_pace)
+            seconds = int((run_pace-minutes)*60)
+            run_pace =  str(minutes) + ':' + str(seconds)
                        
         return render_to_response('recap.html', {'event': target_event,
                                                  'css': ('%sevent_log.css' % settings.STATIC_URL),
                                                  'place': place,
                                                  'bike_speed': bike_speed,
-#                                                 'run_pace': target_event.run_time/target_event.run_distance,
+                                                 'run_pace': run_pace,
                                                  })
     
 class List(View):

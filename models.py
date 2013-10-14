@@ -65,7 +65,7 @@ class Event(models.Model):
         return "/events/recaps?event=%d" % self.id  
     
     def __unicode__(self):
-        return self.name + '['+self.date.ctime()+']'
+        return self.name + ' ['+self.date.strftime('%b %d, %Y')+']'
       
     def __str__(self):
-        return self.name + '['+self.date.ctime()+']'
+        return self.name + ' ['+self.date.strftime('%b %d, %Y')+']'

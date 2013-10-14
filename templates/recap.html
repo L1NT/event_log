@@ -11,7 +11,6 @@
   </hgroup>
   
   {% if event.swim_distance or event.bike_distance or event.run_distance %}
-    <!-- <h2>Distances:</h2> -->
     <p>
       {% if event.swim_distance %}
         &nbsp;&nbsp;Swim Distance: {{ event.swim_distance }}
@@ -33,7 +32,7 @@
         &nbsp;&nbsp;Bike Time: {{ event.bike_time }} ({{ bike_speed }}mph)
       {% endif %}
       {% if event.run_time %}
-        &nbsp;&nbsp;Run Time: {{ event.run_time }} ({{ run_pace }}/mile)
+        &nbsp;&nbsp;Run Time: {{ event.run_time.hour }}:{{ event.run_time.minute }}:{{ event.run_time.second }} ({{ run_pace }}/mile)
       {% endif %}
     </p>
     <hr />
