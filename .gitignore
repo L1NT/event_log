@@ -6,3 +6,5 @@ local_settings.py
 *~
 *.db
 .DS_Store
+*.DS_Store
+event_log/static/.DS_Store

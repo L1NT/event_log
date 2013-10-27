@@ -47,7 +47,7 @@ class Recaps(View):
             run_pace =  str(minutes) + ':' + str(seconds)
                        
         return render_to_response('recap.html', {'event': target_event,
-                                                 'css': ('%sevent_log.css' % settings.STATIC_URL),
+                                                 'css': ('%sevent_log/event_log.css' % settings.STATIC_URL),
                                                  'place': place,
                                                  'bike_speed': bike_speed,
                                                  'run_pace': run_pace,
@@ -56,6 +56,6 @@ class Recaps(View):
 class List(View):
     def dispatch(self, request, *args, **kwargs):
         return render_to_response('list.html', {'events': Event.objects.all(),
-                                                'css': ('%sevent_log.css' % settings.STATIC_URL),
-                                                'js_libs': '%sjs_libs/'%settings.STATIC_URL,
+                                                'css': ('%sevent_log/event_log.css' % settings.STATIC_URL),
+                                                'js_libs': '%sevent_log/js_libs/'%settings.STATIC_URL,
                                                 })
