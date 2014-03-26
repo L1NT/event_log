@@ -37,14 +37,20 @@ class Recaps(View):
                
         bike_speed = ''
         if target_event.bike_distance and target_event.bike_time:
-            bike_speed = target_event.bike_distance/(target_event.bike_time.hour + target_event.bike_time.minute/60 + target_event.bike_time.second/360)
+            bike_speed = round(target_event.bike_distance/(target_event.bike_time.hour + target_event.bike_time.minute/60 + target_event.bike_time.second/360), 2)
         run_pace = ''
         if target_event.run_distance and target_event.run_time:
             run_pace = target_event.run_time.hour*60 + target_event.run_time.minute + target_event.run_time.second/60
             run_pace /= target_event.run_distance
             minutes = int(run_pace)
             seconds = int((run_pace-minutes)*60)
-            run_pace =  str(minutes) + ':' + str(seconds)
+            run_pace = ''
+            if minutes < 10:
+                run_pace += '0'
+            run_pace += str(minutes) + ':'
+            if seconds < 10:
+                run_pace += '0'
+            run_pace += str(seconds)
                        
         return render_to_response('recap.html', {'event': target_event,
                                                  'css': ('%sevent_log/event_log.css' % settings.STATIC_URL),
